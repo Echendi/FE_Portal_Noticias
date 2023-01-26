@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApiUser: 'http://localhost:8080/user',
+  urlApiUser: 'http://localhost:8080/login',
   urlApiNews: 'http://localhost:8080/news',
   urlApiWeather: 'http://localhost:8080/weather'
 };

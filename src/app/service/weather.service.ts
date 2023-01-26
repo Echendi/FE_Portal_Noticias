@@ -13,6 +13,6 @@ export class WeatherService {
   constructor(private http: HttpClient) { }
 
   getWeather():Observable<Weather>{
-    return this.http.get<Weather>(`${this.urlEndpoint}`);
+    return this.http.get<Weather>(`${this.urlEndpoint}`,{headers:this.httpHeaders});
   }
 }

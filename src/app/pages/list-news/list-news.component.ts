@@ -11,28 +11,36 @@ import { Examples } from './examples';
 export class ListNewsComponent implements OnInit {
   paginationSize: number = 10;
   paginationPos: number = 1;
-  numbers = Array(this.paginationSize).fill(0).map((x, i) => i);
+  numbers = [];
   news: News[];
   constructor(private newsService: NewsService) { }
   
   ngOnInit(): void {
-    /* this.newsService.getNews(paginationPos).subscribe(response =>{
-      this.news = response;
-    }) */
-   /*  this.newsService.getPaginationSize().subscribe(response =>{
-      this.paginationSize = response;
-    }) */
+    if (sessionStorage.getItem('actualPage')) {
+        let actualPage = parseInt(sessionStorage.getItem('actualPage'));
+        this.newsService.getNews(actualPage).subscribe(response =>{
+        this.news = response;
+        this.paginationPos = actualPage;
+      })
+    }else{
+        this.newsService.getNews(1).subscribe(response =>{
+        this.news = response;
+        });
+    }
+
+    this.newsService.getPaginationSize().subscribe(response =>{
+      this.paginationSize = response.pages;
+      this.numbers =  Array(this.paginationSize).fill(0).map((x, i) => i);
+    })
     this.news = new Examples().examples;
-  }
-
-  seeNewsDetail(pos:number){
-    this.newsService.getNewsDetail(this.paginationPos,pos).subscribe(response =>{
-
-    });
   }
 
   changePage(paginationPos:number){
     this.paginationPos = paginationPos;
+    sessionStorage.setItem('actualPage',String(paginationPos));
+    this.newsService.getNews(paginationPos).subscribe(response =>{
+      this.news = response;
+    })
   }
 
   isPageActive(pagePos:number){

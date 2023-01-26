@@ -16,16 +16,9 @@ export class WatherComponent implements OnInit {
   }
 
   loadWeather(){
-    /* this.weatherService.getWeather().subscribe(response =>{
+    this.weatherService.getWeather().subscribe(response =>{
       this.weather = response;
-    }) */
-    this.weather = {
-      'city':'Santiago de Cali',
-      'country':'Colombia',
-      'humidity':'10',
-      'temperature':'12',
-      'time':'Soleado'
-    }
+    })
   }
 
 }

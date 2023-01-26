@@ -20,14 +20,16 @@ export class DetailedNewsComponent implements OnInit {
   }
 
   loadProperties(): void{
-    /* this.activatedRoute.params.subscribe((params)=>{
+    this.activatedRoute.params.subscribe((params)=>{
       let paginationPosition = params['paginationPosition'];
       let newsPosition = params['newsPosition'];
       this.newsService.getNewsDetail(paginationPosition, newsPosition).subscribe(response =>{
+        console.log(response);
+        
         this.news = response;
       })
-    }) */
-    this.news = new Examples().news[0];
+    })
+    /* this.news = new Examples().news[0]; */
   }
 
 }

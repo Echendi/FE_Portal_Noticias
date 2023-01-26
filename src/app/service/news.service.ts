@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { News } from '../interface/news';
+import { Pages } from '../interface/pages';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,8 @@ export class NewsService {
    * @returns lista de noticias
    */
   
-  getPaginationSize(): Observable<number>{
-    return this.http.get<number>(`${this.urlEndpoint}`);
+  getPaginationSize(): Observable<Pages>{
+    return this.http.get<Pages>(`${this.urlEndpoint}`);
   }
 
   getNews(pagination: number): Observable<News[]>{
